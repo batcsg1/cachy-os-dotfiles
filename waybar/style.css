@@ -1,0 +1,142 @@
+* {
+    font-family: "Iosevka Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: linear-gradient(45deg, rgba(151, 197, 233, 0.2), rgba(237, 142, 166, 0.2));
+    color: #f5e6ea;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(45deg, #97C5E9, #ED8EA6) 1;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background: transparent;
+    color: #b3a6ff;
+}
+
+#workspaces button.active {
+    background: rgba(179, 166, 255, 0.25);
+    color: #f5e6ea;
+    border-radius: 6px;
+}
+
+#custom-distro {
+    padding: 0 10px;
+    margin-right: 10px;
+    color: #FACFDE;
+    font-size: 16px;
+}
+
+#clock,
+#pulseaudio,
+#network,
+#battery,
+#tray {
+    padding: 0 10px;
+    color: #f5e6ea;
+}
+
+#battery {
+    color: #f5b8c4;
+}
+
+#network {
+    color: #b3a6ff;
+}
+
+#clock {
+    font-family: "Iosevka Nerd Font";
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgba(90, 100, 120, 0.55);
+    border-radius: 8px;
+    padding: 2px 14px;
+    margin: 4px 6px;
+}
+
+#memory,
+#temperature,
+#disk,
+#pulseaudio,
+#bluetooth,
+#network,
+#cpu
+{
+    background-color: rgba(90, 100, 120, 0.55);
+    border-radius: 8px;
+    padding: 2px 14px;
+    margin: 4px 2px;
+}
+
+#custom-distro {
+    background-color: rgba(90, 100, 120, 0.55);
+    color: #D98CB3;
+    border-radius: 8px;
+    padding: 2px 14px;
+    margin: 4px 2px;
+}
+
+#bluetooth.disabled {
+    color: rgba(255, 255, 255, 0.35);
+    background-color: rgba(90, 100, 120, 0.25);
+}
+
+#bluetooth.off,
+#network.disconnected {
+    color: #f38ba8;
+    background-color: rgba(180, 40, 60, 0.25);
+}
+
+#temperature {
+    font-weight: bold;
+    color: #e8965a;
+}
+
+#cpu {
+    font-weight: bold;
+    color: #7a9cc6;
+}
+
+#memory {
+    font-weight: bold;
+    color: #d98cb3;
+}
+
+#disk {
+    font-weight: bold;
+    color: #8fbf8f;
+}
+
+#pulseaudio {
+    font-weight: bold;
+    color: #c4a7e7;
+}
+
+#workspaces button {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    min-width: 12px;
+    min-height: 8px;
+    padding: 0;
+    margin: 0 4px;
+    font-size: 0;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+    background-color: rgba(255, 255, 255, 1);
+    min-width: 12px;
+    min-height: 8px;
+}
+
+#workspaces button.empty {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+}

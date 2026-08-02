@@ -1,0 +1,83 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+
+    "modules-left": ["custom/distro", "hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["temperature", "cpu", "memory", "disk", "pulseaudio", "bluetooth", "network", "battery"],
+"cpu": {
+    "format": "<span color='#e8965a'></span>  {usage}%",
+    "tooltip": true
+},
+"memory": {
+    "format": "<span color='#7a9cc6'></span>  {percentage}%",
+    "tooltip": true
+},
+"disk": {
+    "format": "󰋊 {percentage_used}%",
+    "path": "/"
+},
+"temperature": {
+    "format": "<span color='#e8965a'></span>  {temperatureC}°C",
+    "critical-threshold": 80,
+    "format-critical": "<span color='#eb6f92'></span>  {temperatureC}°C",
+    "tooltip": true
+},
+"bluetooth": {
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "format-on": "󰂯 on",
+    "format-off": "󰂲 off",
+    "format-disabled": "󰂲",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "blueman-manager"
+},
+"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": "",
+        "deactivated": ""
+    }
+},
+
+    "custom/distro": {
+    	"format": " ",
+    	"tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate"
+    },
+
+    "clock": {
+        "format": "<span color='#e8965a'>{0:%I:%M %p | %z}</span> <span color='#8fbf8f'>|</span> <span color='#7a9cc6'>{0:%a * %b}</span> <span color='#8fbf8f'>|</span> <span color='#d98cb3'>{0:%Y-%m-%d}</span>",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "󰕾 {volume}%",
+        "format-muted": "󰝟 ",
+        "on-click": "pavucontrol"
+    },
+
+    "network": {
+        "format-wifi": "󰤨 ",
+        "format-ethernet": "󰈀 ",
+        "format-disconnected": "󰤭 "
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "tray": {
+        "spacing": 8
+    }
+}
+

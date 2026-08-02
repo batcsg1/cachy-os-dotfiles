@@ -1,0 +1,93 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    display-drun: "Apps";
+    display-run: "Run";
+    display-window: "Window";
+    drun-display-format: "{name}";
+    font: "Iosevka Nerd Font 12";
+    sidebar-mode: false;
+    hover-select: true;
+    me-select-entry: "MousePrimary";
+    me-accept-entry: "MouseDPrimary";
+}
+
+* {
+    base:     #191724;
+    surface:  #1f1d2e;
+    overlay:  #26233a;
+    muted:    #6e6a86;
+    subtle:   #908caa;
+    text:     #e0def4;
+    love:     #eb6f92;
+    gold:     #f6c177;
+    rose:     #ebbcba;
+    pine:     #31748f;
+    foam:     #9ccfd8;
+    iris:     #c4a7e7;
+
+    background-color: transparent;
+    text-color: @text;
+}
+
+window {
+    background-color: @base;
+    border: 2px;
+    border-color: @iris;
+    border-radius: 10px;
+    padding: 12px;
+    width: 500px;
+}
+
+mainbox {
+    background-color: transparent;
+    children: [ inputbar, listview ];
+    spacing: 10px;
+}
+
+inputbar {
+    background-color: @overlay;
+    text-color: @text;
+    border-radius: 8px;
+    padding: 8px 12px;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color: @foam;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: @muted;
+    text-color: @text;
+}
+
+listview {
+    background-color: transparent;
+    lines: 8;
+    spacing: 4px;
+    scrollbar: false;
+}
+
+element {
+    background-color: transparent;
+    text-color: @subtle;
+    padding: 8px 10px;
+    border-radius: 6px;
+}
+
+element selected {
+    background-color: @overlay;
+    text-color: @rose;
+}
+
+element-icon {
+    size: 24px;
+}
+
+element-text {
+    vertical-align: 0.5;
+}
+

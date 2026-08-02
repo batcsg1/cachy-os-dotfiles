@@ -1,0 +1,5 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+}
+@theme "purple-pink"

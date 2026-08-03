@@ -1,0 +1,36 @@
+format = """
+$os\
+$directory\
+$line_break\
+$character\
+"""
+
+#[username]
+#show_always = true
+#style_user = "bold #EE90A8"
+#format = "[$user]($style)"
+
+#[hostname]
+#ssh_only = false
+#format = "[@$hostname]($style) "
+#style = "bold #97C5E9"
+
+[directory]
+style = "bold #f5b8c4"
+format = "[$path]($style) "
+
+[os]
+disabled = false
+format = "[$symbol]($style)"
+style = "bold #EE90A8"
+
+[os.symbols]
+Debian = "󰣚  "
+
+#[cmd_duration]
+#format = "took [$duration]($style) "
+#style = "bold #f5b8c4"
+
+[character]
+success_symbol = "[❯ ](bold #f5b8c4)"
+error_symbol = "[❯ ](bold #f5b8c4)"

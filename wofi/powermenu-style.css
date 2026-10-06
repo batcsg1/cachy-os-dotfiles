@@ -1,53 +1,42 @@
-/* ROG RGB — power menu (matches style.css launcher)
-   red #ff1744  orange #ff6d00  yellow #ffd600  green #00e676
-   cyan #00e5ff  blue #2979ff  purple #d500f9  pink #ff00aa */
-
-@keyframes rgb-glow {
-    0%   { border-color: #ff1744; box-shadow: 0 0 10px rgba(255, 23, 68, 0.5); }
-    17%  { border-color: #ffd600; box-shadow: 0 0 10px rgba(255, 214, 0, 0.5); }
-    33%  { border-color: #00e676; box-shadow: 0 0 10px rgba(0, 230, 118, 0.5); }
-    50%  { border-color: #00e5ff; box-shadow: 0 0 10px rgba(0, 229, 255, 0.5); }
-    67%  { border-color: #2979ff; box-shadow: 0 0 10px rgba(41, 121, 255, 0.5); }
-    83%  { border-color: #d500f9; box-shadow: 0 0 10px rgba(213, 0, 249, 0.5); }
-    100% { border-color: #ff1744; box-shadow: 0 0 10px rgba(255, 23, 68, 0.5); }
-}
+/* Nord — power menu (matches style.css launcher)
+   polar night #2e3440 #3b4252 #434c5e #4c566a
+   snow storm  #d8dee9 #e5e9f0 #eceff4
+   frost       #8fbcbb #88c0d0 #81a1c1 #5e81ac
+   aurora      #bf616a #d08770 #ebcb8b #a3be8c #b48ead */
 
 * {
     font-family: "DepartureMono Nerd Font Mono", monospace;
     font-size: 16px;
 }
 
-/* rainbow frame: window gradient shows 2px around the dark panel */
 #window {
-    background: linear-gradient(135deg,
-        #ff1744, #ff6d00, #ffd600, #00e676, #00e5ff, #2979ff, #d500f9, #ff00aa);
-    border-radius: 14px;
-    border: none;
-    color: #e6e6f0;
+    background-color: #2e3440;
+    border: 2px solid #4c566a;
+    border-radius: 12px;
+    color: #d8dee9;
 }
 
 #outer-box {
-    margin: 2px;
+    margin: 0;
     padding: 10px;
-    border-radius: 12px;
-    background-color: rgba(8, 8, 14, 0.95);
+    background-color: transparent;
     border: none;
 }
 
 #input {
     margin: 4px 4px 10px 4px;
     padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background-color: rgba(255, 255, 255, 0.04);
-    color: #ccfbff;
-    caret-color: #ff00aa;
+    border-radius: 8px;
+    border: 1px solid #434c5e;
+    background-color: #3b4252;
+    color: #eceff4;
+    caret-color: #88c0d0;
     box-shadow: none;
 }
 
 #input:focus {
-    border-color: rgba(255, 0, 170, 0.6);
-    box-shadow: 0 0 8px rgba(255, 0, 170, 0.35);
+    border-color: #88c0d0;
+    box-shadow: none;
 }
 
 #scroll {
@@ -62,44 +51,37 @@
 #entry {
     margin: 3px 4px;
     padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    background-color: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    border: 1px solid #3b4252;
+    background-color: #3b4252;
     transition: all 0.15s ease;
 }
 
 #entry:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: #434c5e;
 }
 
 #entry:selected {
-    background: linear-gradient(90deg,
-        rgba(255, 23, 68, 0.16),
-        rgba(0, 229, 255, 0.10),
-        rgba(213, 0, 249, 0.16));
-    border: 1px solid #ff1744;
-    animation: rgb-glow 5s linear infinite;
+    background-color: #434c5e;
+    border: 1px solid #88c0d0;
     outline: none;
 }
 
 #text {
     margin: 0 6px;
-    color: #a8a8c0;
     font-weight: bold;
+    color: #d8dee9;
 }
 
-/* each option gets its own hue (order = order in powermenu.fish) */
-#inner-box flowboxchild:nth-child(6n+1) #text { color: #ff8a9f; }
-#inner-box flowboxchild:nth-child(6n+2) #text { color: #ffb380; }
-#inner-box flowboxchild:nth-child(6n+3) #text { color: #fff08a; }
-#inner-box flowboxchild:nth-child(6n+4) #text { color: #8affc1; }
-#inner-box flowboxchild:nth-child(6n+5) #text { color: #8af4ff; }
-#inner-box flowboxchild:nth-child(6n+6) #text { color: #ec99ff; }
+/* each option gets its own aurora hue (order = order in powermenu.fish) */
+#inner-box flowboxchild:nth-child(4n+1) #text { color: #bf616a; } /* shutdown */
+#inner-box flowboxchild:nth-child(4n+2) #text { color: #ebcb8b; } /* reboot   */
+#inner-box flowboxchild:nth-child(4n+3) #text { color: #81a1c1; } /* suspend  */
+#inner-box flowboxchild:nth-child(4n+4) #text { color: #b48ead; } /* exit     */
 
 #text:selected,
 #inner-box flowboxchild:selected #text {
-    color: #ffffff;
-    text-shadow: 0 0 6px rgba(255, 0, 170, 0.7);
+    color: #eceff4;
 }
 
 #img {

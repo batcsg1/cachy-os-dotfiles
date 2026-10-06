@@ -1,29 +1,35 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# ROG RGB — red → orange → yellow → green → cyan → blue → purple
-# Palette matches kitty.conf (ROG RGB)
+# Nord — Frost gradient, matches kitty.conf / waybar
+# Polar Night #2E3440 #3B4252 #434C5E #4C566A
+# Snow Storm  #D8DEE9 #E5E9F0 #ECEFF4
+# Frost       #8FBCBB #88C0D0 #81A1C1 #5E81AC
+# Aurora      #BF616A #D08770 #EBCB8B #A3BE8C #B48EAD
+
+palette = 'nord'
 
 add_newline = true
 
 format = """
-[┌](bold fg:#ff1744)$os$shell$username$hostname$time
-[└](bold fg:#2979ff)$directory$git_branch$git_status
+[┌](bold fg:nord10)$os$shell$username$hostname$time
+[└](bold fg:nord8)$directory$git_branch$git_status
 $character"""
 
 # ── line 1: os / shell / user / host / time ──────────────────────
 
 [os]
 disabled = false
-format = '[ $symbol \($type\) ](bold bg:#ff1744 fg:#000000)'
+format = '[ $symbol \($type\) ](bold bg:nord10 fg:nord6)'
 
 [os.symbols]
-Debian = "󰣚"
-Ubuntu = ""
-Arch = ""
-Fedora = ""
-Windows = ""
-Macos = ""
-Linux = ""
+Debian  = "󰣚"
+Ubuntu  = ""
+Arch    = ""
+CachyOS = ""
+Fedora  = ""
+Windows = ""
+Macos   = ""
+Linux   = ""
 
 [shell]
 disabled = false
@@ -32,27 +38,27 @@ zsh_indicator = 'zsh'
 fish_indicator = 'fish'
 powershell_indicator = 'pwsh'
 unknown_indicator = 'sh'
-format = '[](bg:#ff6d00 fg:#ff1744)[  $indicator ](bold bg:#ff6d00 fg:#000000)'
+format = '[](bg:nord9 fg:nord10)[  $indicator ](bold bg:nord9 fg:nord0)'
 
 [username]
 show_always = true
-style_user = 'bold bg:#ffd600 fg:#000000'
-style_root = 'bold bg:#ffd600 fg:#d50000'
-format = '[](bg:#ffd600 fg:#ff6d00)[  $user/]($style)'
+style_user = 'bold bg:nord8 fg:nord0'
+style_root = 'bold bg:nord8 fg:nord11'
+format = '[](bg:nord8 fg:nord9)[  $user/]($style)'
 
 [hostname]
 ssh_only = false
-format = '[$hostname ](bold bg:#ffd600 fg:#000000)'
+format = '[$hostname ](bold bg:nord8 fg:nord0)'
 
 [time]
 disabled = false
 time_format = '%H:%M'
-format = '[](bg:#00e676 fg:#ffd600)[  $time ](bold bg:#00e676 fg:#000000)[](fg:#00e676)'
+format = '[](bg:nord7 fg:nord8)[  $time ](bold bg:nord7 fg:nord0)[](fg:nord7)'
 
 # ── line 2: directory + git ──────────────────────────────────────
 
 [directory]
-format = '[\[ ](fg:#2979ff)[$path](bold fg:#00e5ff)[$read_only](fg:#ff1744)[ \]](fg:#2979ff)'
+format = '[\[ ](fg:nord3)[$path](bold fg:nord8)[$read_only](fg:nord11)[ \]](fg:nord3)'
 read_only = ' 󰌾'
 truncation_length = 3
 truncate_to_repo = false
@@ -60,15 +66,34 @@ truncation_symbol = '…/'
 home_symbol = '~'
 
 [git_branch]
-symbol = ' '
-format = ' [$symbol$branch](bold fg:#d500f9)'
+symbol = ' '
+format = ' [$symbol$branch](bold fg:nord15)'
 
 [git_status]
-format = '[ $all_status$ahead_behind](fg:#ff00aa)'
+format = '[ $all_status$ahead_behind](fg:nord13)'
 
 # ── line 3: prompt char ──────────────────────────────────────────
 
 [character]
-success_symbol = '[❯](bold fg:#ff1744)[❯](bold fg:#00e676)[❯](bold fg:#2979ff)'
-error_symbol = '[❯❯❯](bold fg:#ff1744)'
-vimcmd_symbol = '[❮](bold fg:#d500f9)'
+success_symbol = '[❯](bold fg:nord10)[❯](bold fg:nord9)[❯](bold fg:nord8)'
+error_symbol = '[❯❯❯](bold fg:nord11)'
+vimcmd_symbol = '[❮](bold fg:nord15)'
+
+# ── palette (must stay last: TOML tables swallow keys below them) ──
+
+[palettes.nord]
+nord0  = '#2E3440'
+nord1  = '#3B4252'
+nord2  = '#434C5E'
+nord3  = '#4C566A'
+nord4  = '#D8DEE9'
+nord6  = '#ECEFF4'
+nord7  = '#8FBCBB'
+nord8  = '#88C0D0'
+nord9  = '#81A1C1'
+nord10 = '#5E81AC'
+nord11 = '#BF616A'
+nord12 = '#D08770'
+nord13 = '#EBCB8B'
+nord14 = '#A3BE8C'
+nord15 = '#B48EAD'

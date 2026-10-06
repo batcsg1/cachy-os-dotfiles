@@ -1,52 +1,75 @@
-/* ROG RGB — matches kitty / starship / nvim / hyprland
-   red #ff1744  orange #ff6d00  yellow #ffd600  green #00e676
-   cyan #00e5ff  blue #2979ff  purple #d500f9  pink #ff00aa */
+/* Nord — port of ROG RGB layout
+   Polar Night  nord0 #2E3440  nord1 #3B4252  nord2 #434C5E  nord3 #4C566A
+   Snow Storm   nord4 #D8DEE9  nord5 #E5E9F0  nord6 #ECEFF4
+   Frost        nord7 #8FBCBB  nord8 #88C0D0  nord9 #81A1C1  nord10 #5E81AC
+   Aurora       nord11 #BF616A nord12 #D08770 nord13 #EBCB8B nord14 #A3BE8C nord15 #B48EAD */
 
-@keyframes rgb-cycle {
-    0%   { background-color: #ff1744; box-shadow: 0 0 6px #ff1744; }
-    14%  { background-color: #ff6d00; box-shadow: 0 0 6px #ff6d00; }
-    28%  { background-color: #ffd600; box-shadow: 0 0 6px #ffd600; }
-    42%  { background-color: #00e676; box-shadow: 0 0 6px #00e676; }
-    57%  { background-color: #00e5ff; box-shadow: 0 0 6px #00e5ff; }
-    71%  { background-color: #2979ff; box-shadow: 0 0 6px #2979ff; }
-    85%  { background-color: #d500f9; box-shadow: 0 0 6px #d500f9; }
-    100% { background-color: #ff1744; box-shadow: 0 0 6px #ff1744; }
+@define-color nord0  #2E3440;
+@define-color nord1  #3B4252;
+@define-color nord2  #434C5E;
+@define-color nord3  #4C566A;
+@define-color nord4  #D8DEE9;
+@define-color nord5  #E5E9F0;
+@define-color nord6  #ECEFF4;
+@define-color nord7  #8FBCBB;
+@define-color nord8  #88C0D0;
+@define-color nord9  #81A1C1;
+@define-color nord10 #5E81AC;
+@define-color nord11 #BF616A;
+@define-color nord12 #D08770;
+@define-color nord13 #EBCB8B;
+@define-color nord14 #A3BE8C;
+@define-color nord15 #B48EAD;
+
+/* slow cycle through Frost + Aurora (calmer than the RGB version) */
+@keyframes nord-cycle {
+    0%   { background-color: #88C0D0; box-shadow: 0 0 4px alpha(#88C0D0, 0.5); }
+    16%  { background-color: #81A1C1; box-shadow: 0 0 4px alpha(#81A1C1, 0.5); }
+    33%  { background-color: #B48EAD; box-shadow: 0 0 4px alpha(#B48EAD, 0.5); }
+    50%  { background-color: #D08770; box-shadow: 0 0 4px alpha(#D08770, 0.5); }
+    66%  { background-color: #EBCB8B; box-shadow: 0 0 4px alpha(#EBCB8B, 0.5); }
+    83%  { background-color: #A3BE8C; box-shadow: 0 0 4px alpha(#A3BE8C, 0.5); }
+    100% { background-color: #88C0D0; box-shadow: 0 0 4px alpha(#88C0D0, 0.5); }
+}
+
+@keyframes frost-text {
+    0%   { color: #ECEFF4; border-bottom-color: #88C0D0; }
+    25%  { color: #E5E9F0; border-bottom-color: #81A1C1; }
+    50%  { color: #ECEFF4; border-bottom-color: #5E81AC; }
+    75%  { color: #E5E9F0; border-bottom-color: #8FBCBB; }
+    100% { color: #ECEFF4; border-bottom-color: #88C0D0; }
 }
 
 * {
     font-family: "DepartureMono Nerd Font Mono", monospace;
-    font-size: 10px;
+    font-size: 7.5px;
     min-height: 0;
 }
 
 window#waybar {
-    /* near-transparent RGB wash over a light black base */
-    background:
-        linear-gradient(90deg,
-            rgba(255, 23, 68, 0.10),
-            rgba(255, 109, 0, 0.10),
-            rgba(255, 214, 0, 0.10),
-            rgba(0, 230, 118, 0.10),
-            rgba(0, 229, 255, 0.10),
-            rgba(41, 121, 255, 0.10),
-            rgba(213, 0, 249, 0.10),
-            rgba(255, 0, 170, 0.10)),
-        rgba(0, 0, 0, 0.35);
-    color: #e6e6f0;
+    background: alpha(@nord0, 0.85);
+    color: @nord4;
     border-bottom: 2px solid transparent;
     border-image: linear-gradient(90deg,
-        #ff1744, #ff6d00, #ffd600, #00e676, #00e5ff, #2979ff, #d500f9, #ff00aa) 1;
+        #8FBCBB, #88C0D0, #81A1C1, #5E81AC, #B48EAD, #81A1C1, #88C0D0) 1;
 }
 
-/* distro pill: cycles through the spectrum */
+tooltip {
+    background: @nord0;
+    border: 1px solid @nord3;
+    border-radius: 8px;
+}
+tooltip label { color: @nord4; }
+
+/* distro pill */
 #custom-distro {
     padding: 2px 8px;
     border-radius: 8px;
     font-weight: bold;
-    color: #000000;
+    color: @nord0;
     margin: 4px 2px;
-    background-color: #ff1744;
-    animation: rgb-cycle 8s linear infinite;
+    background-color: @nord8;
+    animation: nord-cycle 12s linear infinite;
 }
 
 #clock,
@@ -60,7 +83,7 @@ window#waybar {
 #network,
 #cpu,
 #battery {
-    background-color: rgba(10, 10, 18, 0.80);
+    background-color: alpha(@nord1, 0.85);
     border-radius: 8px;
     padding: 2px 14px;
     margin: 4px 2px;
@@ -68,70 +91,77 @@ window#waybar {
     border-bottom: 2px solid transparent;
 }
 
-@keyframes rgb-text {
-    /* text = light/pastel shade, underline = full neon */
-    0%   { color: #ffd6de; border-bottom-color: #ff1744; }
-    14%  { color: #ffe3cc; border-bottom-color: #ff6d00; }
-    28%  { color: #fff8c7; border-bottom-color: #ffd600; }
-    42%  { color: #ccffe3; border-bottom-color: #00e676; }
-    57%  { color: #ccfbff; border-bottom-color: #00e5ff; }
-    71%  { color: #d6e4ff; border-bottom-color: #2979ff; }
-    85%  { color: #f5d6ff; border-bottom-color: #d500f9; }
-    100% { color: #ffd6de; border-bottom-color: #ff1744; }
-}
-
-/* clock: rainbow-tinted background, text + underline cycle RGB */
+/* clock: Frost gradient wash, text + underline drift through Frost */
 #clock {
-    font-size: 10px;
     margin: 4px 6px;
     background: linear-gradient(90deg,
-        rgba(255, 23, 68, 0.18),
-        rgba(255, 214, 0, 0.18),
-        rgba(0, 230, 118, 0.18),
-        rgba(0, 229, 255, 0.18),
-        rgba(41, 121, 255, 0.18),
-        rgba(213, 0, 249, 0.18)),
-        rgba(10, 10, 18, 0.85);
-    border-bottom: 2px solid #ff1744;
-    animation: rgb-text 6s linear infinite;
+        alpha(#8FBCBB, 0.15),
+        alpha(#88C0D0, 0.15),
+        alpha(#81A1C1, 0.15),
+        alpha(#5E81AC, 0.15)),
+        alpha(@nord1, 0.90);
+    border-bottom: 2px solid @nord8;
+    animation: frost-text 10s linear infinite;
 }
 
 /* one hue per module: text + underline in the hue,
-   background = the same hue darkened to ~15%, semi-opaque */
-#custom-uptime   { color: #ff1744; border-bottom-color: #ff1744; background-color: rgba(38, 3, 10, 0.85); }
-#temperature     { color: #ff6d00; border-bottom-color: #ff6d00; background-color: rgba(38, 16, 0, 0.85); }
-#cpu             { color: #ffd600; border-bottom-color: #ffd600; background-color: rgba(38, 32, 0, 0.85); }
-#memory          { color: #00e676; border-bottom-color: #00e676; background-color: rgba(0, 35, 18, 0.85); }
-#disk            { color: #1de9b6; border-bottom-color: #1de9b6; background-color: rgba(4, 35, 27, 0.85); }
-#pulseaudio      { color: #00e5ff; border-bottom-color: #00e5ff; background-color: rgba(0, 34, 38, 0.85); }
-#custom-netspeed { color: #2979ff; border-bottom-color: #2979ff; background-color: rgba(6, 18, 38, 0.85); }
-#network         { color: #7c4dff; border-bottom-color: #7c4dff; background-color: rgba(19, 12, 38, 0.85); }
-#bluetooth       { color: #d500f9; border-bottom-color: #d500f9; background-color: rgba(32, 0, 37, 0.85); }
-#battery         { color: #ff00aa; border-bottom-color: #ff00aa; background-color: rgba(38, 0, 26, 0.85); padding: 2px 10px; }
-#tray            { padding: 0 10px; color: #e6e6f0; }
+   background = hue mixed ~15% into nord0 */
+#custom-uptime   { color: @nord15; border-bottom-color: @nord15; background-color: alpha(mix(@nord0, @nord15, 0.15), 0.90); }
+#temperature     { color: @nord12; border-bottom-color: @nord12; background-color: alpha(mix(@nord0, @nord12, 0.15), 0.90); }
+#cpu             { color: @nord13; border-bottom-color: @nord13; background-color: alpha(mix(@nord0, @nord13, 0.15), 0.90); }
+#memory          { color: @nord14; border-bottom-color: @nord14; background-color: alpha(mix(@nord0, @nord14, 0.15), 0.90); }
+#disk            { color: @nord7;  border-bottom-color: @nord7;  background-color: alpha(mix(@nord0, @nord7,  0.15), 0.90); }
+#pulseaudio      { color: @nord8;  border-bottom-color: @nord8;  background-color: alpha(mix(@nord0, @nord8,  0.15), 0.90); }
+#custom-netspeed { color: @nord9;  border-bottom-color: @nord9;  background-color: alpha(mix(@nord0, @nord9,  0.15), 0.90); }
+#network         { color: @nord10; border-bottom-color: @nord10; background-color: alpha(mix(@nord0, @nord10, 0.15), 0.90); }
+#bluetooth       { color: @nord15; border-bottom-color: @nord15; background-color: alpha(mix(@nord0, @nord15, 0.15), 0.90); }
+#battery         { color: @nord14; border-bottom-color: @nord14; background-color: alpha(mix(@nord0, @nord14, 0.15), 0.90); padding: 2px 10px; }
+#tray            { padding: 0 10px; color: @nord4; }
+
+/* states */
+#battery.charging,
+#battery.plugged {
+    color: @nord8;
+    border-bottom-color: @nord8;
+}
+
+#battery.warning:not(.charging) {
+    color: @nord13;
+    border-bottom-color: @nord13;
+}
 
 #temperature.critical,
 #battery.critical:not(.charging) {
-    color: #000000;
-    background-color: #ff1744;
+    color: @nord0;
+    background-color: @nord11;
+    border-bottom-color: @nord11;
+}
+
+#pulseaudio.muted {
+    color: @nord3;
+    border-bottom-color: transparent;
 }
 
 #bluetooth.disabled {
-    color: rgba(255, 255, 255, 0.3);
-    background-color: rgba(10, 10, 18, 0.4);
+    color: alpha(@nord4, 0.3);
+    background-color: alpha(@nord0, 0.4);
     border-bottom-color: transparent;
 }
 
 #bluetooth.off,
 #network.disconnected {
-    color: #4a3a5a;
-    background-color: rgba(10, 10, 18, 0.4);
+    color: @nord3;
+    background-color: alpha(@nord0, 0.4);
     border-bottom-color: transparent;
 }
 
-/* workspaces: each dot its own hue, active one cycles RGB */
+#network.disconnected {
+    color: @nord11;
+}
+
+/* workspaces: dots, each its own Nord hue, active cycles */
 #workspaces button {
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: alpha(@nord4, 0.12);
     color: transparent;
     border-radius: 50%;
     min-width: 12px;
@@ -142,27 +172,31 @@ window#waybar {
     transition: all 0.2s ease;
 }
 
-#workspaces button:nth-child(7n+1) { background-color: rgba(255, 23, 68, 0.35); }
-#workspaces button:nth-child(7n+2) { background-color: rgba(255, 109, 0, 0.35); }
-#workspaces button:nth-child(7n+3) { background-color: rgba(255, 214, 0, 0.35); }
-#workspaces button:nth-child(7n+4) { background-color: rgba(0, 230, 118, 0.35); }
-#workspaces button:nth-child(7n+5) { background-color: rgba(0, 229, 255, 0.35); }
-#workspaces button:nth-child(7n+6) { background-color: rgba(41, 121, 255, 0.35); }
-#workspaces button:nth-child(7n+7) { background-color: rgba(213, 0, 249, 0.35); }
+#workspaces button:nth-child(7n+1) { background-color: alpha(@nord8,  0.40); }
+#workspaces button:nth-child(7n+2) { background-color: alpha(@nord9,  0.40); }
+#workspaces button:nth-child(7n+3) { background-color: alpha(@nord15, 0.40); }
+#workspaces button:nth-child(7n+4) { background-color: alpha(@nord12, 0.40); }
+#workspaces button:nth-child(7n+5) { background-color: alpha(@nord13, 0.40); }
+#workspaces button:nth-child(7n+6) { background-color: alpha(@nord14, 0.40); }
+#workspaces button:nth-child(7n+7) { background-color: alpha(@nord7,  0.40); }
 
 #workspaces button.empty {
-    background-color: rgba(255, 255, 255, 0.10);
+    background-color: alpha(@nord4, 0.10);
 }
 
 #workspaces button.active {
     min-width: 18px;
     min-height: 8px;
     border-radius: 6px;
-    background-color: #ff1744;
-    animation: rgb-cycle 4s linear infinite;
+    background-color: @nord8;
+    animation: nord-cycle 6s linear infinite;
+}
+
+#workspaces button.urgent {
+    background-color: @nord11;
 }
 
 #workspaces button:hover {
-    background-color: #ff00aa;
-    box-shadow: 0 0 6px #ff00aa;
+    background-color: @nord6;
+    box-shadow: 0 0 4px alpha(@nord6, 0.6);
 }

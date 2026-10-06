@@ -1,0 +1,65 @@
+# Nord — matches kitty / nvim / waybar / wofi
+# Polar Night: #2E3440 #3B4252 #434C5E #4C566A
+# Snow Storm:  #D8DEE9 #E5E9F0 #ECEFF4
+# Frost:       #8FBCBB #88C0D0 #81A1C1 #5E81AC
+# Aurora:      #BF616A #D08770 #EBCB8B #A3BE8C #B48EAD
+theme[main_bg]="#2E3440"
+theme[main_fg]="#D8DEE9"
+
+theme[title]="#88C0D0"
+theme[hi_fg]="#88C0D0"
+theme[selected_bg]="#434C5E"
+theme[selected_fg]="#ECEFF4"
+
+theme[inactive_fg]="#4C566A"
+theme[graph_text]="#E5E9F0"
+theme[meter_bg]="#3B4252"
+theme[proc_misc]="#8FBCBB"
+
+# box outlines
+theme[cpu_box]="#81A1C1"
+theme[mem_box]="#A3BE8C"
+theme[net_box]="#B48EAD"
+theme[proc_box]="#88C0D0"
+theme[div_line]="#434C5E"
+
+# temps: frost -> yellow -> red
+theme[temp_start]="#8FBCBB"
+theme[temp_mid]="#EBCB8B"
+theme[temp_end]="#BF616A"
+
+# cpu load: green -> yellow -> red
+theme[cpu_start]="#A3BE8C"
+theme[cpu_mid]="#EBCB8B"
+theme[cpu_end]="#BF616A"
+
+# memory meters
+theme[free_start]="#4C566A"
+theme[free_mid]="#8FBCBB"
+theme[free_end]="#A3BE8C"
+
+theme[cached_start]="#4C566A"
+theme[cached_mid]="#5E81AC"
+theme[cached_end]="#81A1C1"
+
+theme[available_start]="#4C566A"
+theme[available_mid]="#81A1C1"
+theme[available_end]="#88C0D0"
+
+theme[used_start]="#D08770"
+theme[used_mid]="#EBCB8B"
+theme[used_end]="#BF616A"
+
+# network graphs
+theme[download_start]="#5E81AC"
+theme[download_mid]="#81A1C1"
+theme[download_end]="#88C0D0"
+
+theme[upload_start]="#B48EAD"
+theme[upload_mid]="#D08770"
+theme[upload_end]="#EBCB8B"
+
+# process list cpu meter
+theme[process_start]="#8FBCBB"
+theme[process_mid]="#88C0D0"
+theme[process_end]="#81A1C1"

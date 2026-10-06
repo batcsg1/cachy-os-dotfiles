@@ -1,7 +1,7 @@
 
 term=kitty
 show_all=true
-gtk_dark=false
+gtk_dark=true
 location=center
 insensitive=false
 allow_markup=true

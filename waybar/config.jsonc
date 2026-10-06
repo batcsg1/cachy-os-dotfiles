@@ -3,58 +3,19 @@
     "position": "top",
     "height": 30,
     "spacing": 4,
-
-    "modules-left": ["custom/distro", "hyprland/workspaces"],
+    "fixed-center": true,
+    "modules-left": ["custom/distro", "hyprland/workspaces", "temperature", "cpu", "memory", "disk"],
     "modules-center": ["clock"],
-    "modules-right": ["temperature", "cpu", "memory", "disk", "pulseaudio", "bluetooth", "network", "custom/netspeed", "custom/uptime", "battery"],
-
-"custom/uptime": {
-    "exec": "~/.config/waybar/scripts/uptime.sh",
-    "return-type": "json",
-    "interval": 60,
-    "tooltip": true
-},
-
-"cpu": {
-    "format": "<span color='#e8965a'></span>  {usage}%",
-    "tooltip": true
-},
-"memory": {
-    "format": "<span color='#7a9cc6'></span>  {percentage}%",
-    "tooltip": true
-},
-"disk": {
-    "format": "󰋊 {percentage_used}%",
-    "path": "/"
-},
-"temperature": {
-    "format": "<span color='#e8965a'></span>  {temperatureC}°C",
-    "critical-threshold": 80,
-    "format-critical": "<span color='#eb6f92'></span>  {temperatureC}°C",
-    "tooltip": true
-},
-"bluetooth": {
-    "format-connected": " {device_alias}",
-    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-    "format-on": "󰂯 on",
-    "format-off": "󰂲 off",
-    "format-disabled": "󰂲",
-    "tooltip-format": "{controller_alias}\t{controller_address}",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "blueman-manager"
-},
-"idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-        "activated": "",
-        "deactivated": ""
-    }
-},
+    "modules-right": ["pulseaudio", "bluetooth", "network", "custom/netspeed", "custom/uptime", "battery"],
+    // Nord palette
+    // Polar Night: #2E3440 #3B4252 #434C5E #4C566A
+    // Snow Storm:  #D8DEE9 #E5E9F0 #ECEFF4
+    // Frost:       #8FBCBB #88C0D0 #81A1C1 #5E81AC
+    // Aurora:      #BF616A #D08770 #EBCB8B #A3BE8C #B48EAD
 
     "custom/distro": {
-    	"format": " ",
-    	"tooltip": false
+        "format": "󰣇 ",
+        "tooltip": false
     },
 
     "hyprland/workspaces": {
@@ -64,34 +25,90 @@
 
     "clock": {
         "interval": 1,
-        "format": "<span color='#ffd6de'>{0:%I:%M:%S %p}</span><span color='#6a6488'> | </span><span color='#fff8c7'>{0:%z}</span><span color='#6a6488'> | </span><span color='#ccffe3'>{0:%a * %b}</span><span color='#6a6488'> | </span><span color='#d6e4ff'>{0:%Y-%m-%d}</span>",
-        "tooltip-format": "<tt>{calendar}</tt>"
+        "format": "{0:%I:%M:%S %p}  |  {0:%z}  |  {0:%a * %b}  |  {0:%Y-%m-%d}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "format": {
+                "months":   "<span color='#88C0D0'><b>{}</b></span>",
+                "weekdays": "<span color='#81A1C1'><b>{}</b></span>",
+                "today":    "<span color='#EBCB8B'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "temperature": {
+        "format": "  {temperatureC}°C",
+        "critical-threshold": 80,
+        "format-critical": "  {temperatureC}°C",
+        "tooltip": true
+    },
+
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": true
+    },
+
+    "memory": {
+        "format": "󰍛  {percentage}%",
+        "tooltip": true
+    },
+
+    "disk": {
+        "format": "󰋊  {percentage_used}%",
+        "path": "/"
     },
 
     "pulseaudio": {
-        "format": "󰕾 {volume}%",
-        "format-muted": "󰝟 ",
+        "format": "󰕾  {volume}%",
+        "format-muted": "󰝟",
         "on-click": "pavucontrol"
     },
 
-    "network": {
-        "format-wifi": "󰤨 ",
-        "format-ethernet": "󰈀 ",
-        "format-disconnected": "󰤭 "
+    "bluetooth": {
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "format-on": "󰂯 on",
+        "format-off": "󰂲 off",
+        "format-disabled": "󰂲",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager"
     },
+
+    "network": {
+        "format-wifi": "󰤨",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭"
+    },
+
     "custom/netspeed": {
         "exec": "~/.config/waybar/scripts/netspeed.sh",
         "return-type": "json",
         "interval": 2,
         "tooltip": true
     },
+
+    "custom/uptime": {
+        "exec": "~/.config/waybar/scripts/uptime.sh",
+        "return-type": "json",
+        "interval": 60,
+        "tooltip": true
+    },
+
     "battery": {
-        "format": "{icon} {capacity}%",
-        "format-icons": ["", "", "", "", ""]
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "󰂄  {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": { "activated": "", "deactivated": "" }
     },
 
     "tray": {
         "spacing": 8
     }
 }
-

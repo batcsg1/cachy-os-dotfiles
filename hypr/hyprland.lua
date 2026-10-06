@@ -19,6 +19,14 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+-- Fallback for any monitor not listed below (e.g. the laptop's eDP-1)
+hl.monitor({
+	output = "",
+	mode = "preferred",
+	position = "auto",
+	scale = "auto",
+})
+
 hl.monitor({
 	output = "DP-2",
 	mode = "1920x1080@60",
@@ -48,7 +56,7 @@ hl.monitor({
 local terminal = "kitty"
 local fileManager = "yazi"
 local menu = "wofi --show drun"
-local browser = "brave-origin-nightly"
+local browser = "brave-origin-nightly --force-device-scale-factor=1.1"
 local lock = "hyprlock"
 local managementMenu = "~/.config/wofi/powermenu.fish"
 -------------------
@@ -116,18 +124,14 @@ hl.config({
 		col = {
 			active_border = {
 				colors = {
-					"rgb(ff1744)",
-					"rgb(ff6d00)",
-					"rgb(ffd600)",
-					"rgb(00e676)",
-					"rgb(00e5ff)",
-					"rgb(2979ff)",
-					"rgb(d500f9)",
+					"rgba(88c0d0ee)", -- Frost Cyan
+					"rgba(ebcb8bee)", -- Aurora Yellow
 				},
 				angle = 45,
 			},
-			inactive_border = { colors = { "rgba(1a1024aa)" } },
+			inactive_border = "rgba(3b4252aa)",
 		},
+
 		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
 		resize_on_border = false,
 
@@ -147,10 +151,9 @@ hl.config({
 
 		shadow = {
 			enabled = true,
-			range = 6,
+			range = 4,
 			render_power = 3,
-			color = 0xee000000,
-			color_inactive = 0x99000000,
+			color = 0xee1a1a1a,
 		},
 		blur = {
 			enabled = true,
@@ -164,10 +167,6 @@ hl.config({
 		enabled = true,
 	},
 })
-
--- spinning RGB
-hl.curve("linear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } })
-hl.animation({ leaf = "borderangle", enabled = true, speed = 50, bezier = "linear", style = "loop" })
 
 -- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
 hl.curve("easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
@@ -320,8 +319,9 @@ hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + ALT + S", hl.dsp.exec_cmd("hyprshot -m region"))
 
 -- Power Keybinds
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("reboot"))
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("shutdown now"))
+-- instant, no confirmation; use SUPER+SHIFT+R / SUPER+SHIFT+P (power.sh) instead
+-- hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("reboot"))
+-- hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("shutdown now"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))

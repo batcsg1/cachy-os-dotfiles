@@ -6,7 +6,15 @@
 
     "modules-left": ["custom/distro", "hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["temperature", "cpu", "memory", "disk", "pulseaudio", "bluetooth", "network", "battery"],
+    "modules-right": ["temperature", "cpu", "memory", "disk", "pulseaudio", "bluetooth", "network", "custom/netspeed", "custom/uptime", "battery"],
+
+"custom/uptime": {
+    "exec": "~/.config/waybar/scripts/uptime.sh",
+    "return-type": "json",
+    "interval": 60,
+    "tooltip": true
+},
+
 "cpu": {
     "format": "<span color='#e8965a'></span>  {usage}%",
     "tooltip": true
@@ -55,8 +63,9 @@
     },
 
     "clock": {
-        "format": "<span color='#e8965a'>{0:%I:%M %p | %z}</span> <span color='#8fbf8f'>|</span> <span color='#7a9cc6'>{0:%a * %b}</span> <span color='#8fbf8f'>|</span> <span color='#d98cb3'>{0:%Y-%m-%d}</span>",
-        "tooltip": false
+        "interval": 1,
+        "format": "<span color='#ffd6de'>{0:%I:%M:%S %p}</span><span color='#6a6488'> | </span><span color='#fff8c7'>{0:%z}</span><span color='#6a6488'> | </span><span color='#ccffe3'>{0:%a * %b}</span><span color='#6a6488'> | </span><span color='#d6e4ff'>{0:%Y-%m-%d}</span>",
+        "tooltip-format": "<tt>{calendar}</tt>"
     },
 
     "pulseaudio": {
@@ -70,7 +79,12 @@
         "format-ethernet": "󰈀 ",
         "format-disconnected": "󰤭 "
     },
-
+    "custom/netspeed": {
+        "exec": "~/.config/waybar/scripts/netspeed.sh",
+        "return-type": "json",
+        "interval": 2,
+        "tooltip": true
+    },
     "battery": {
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""]

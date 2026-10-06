@@ -1,123 +1,138 @@
+/* ROG RGB — matches kitty / starship / nvim / hyprland
+   red #ff1744  orange #ff6d00  yellow #ffd600  green #00e676
+   cyan #00e5ff  blue #2979ff  purple #d500f9  pink #ff00aa */
+
+@keyframes rgb-cycle {
+    0%   { background-color: #ff1744; box-shadow: 0 0 6px #ff1744; }
+    14%  { background-color: #ff6d00; box-shadow: 0 0 6px #ff6d00; }
+    28%  { background-color: #ffd600; box-shadow: 0 0 6px #ffd600; }
+    42%  { background-color: #00e676; box-shadow: 0 0 6px #00e676; }
+    57%  { background-color: #00e5ff; box-shadow: 0 0 6px #00e5ff; }
+    71%  { background-color: #2979ff; box-shadow: 0 0 6px #2979ff; }
+    85%  { background-color: #d500f9; box-shadow: 0 0 6px #d500f9; }
+    100% { background-color: #ff1744; box-shadow: 0 0 6px #ff1744; }
+}
+
 * {
-    font-family: "Iosevka Nerd Font", monospace;
-    font-size: 13px;
+    font-family: "DepartureMono Nerd Font Mono", monospace;
+    font-size: 10px;
     min-height: 0;
 }
 
 window#waybar {
-    background: linear-gradient(45deg, rgba(151, 197, 233, 0.2), rgba(237, 142, 166, 0.2));
-    color: #f5e6ea;
+    /* near-transparent RGB wash over a light black base */
+    background:
+        linear-gradient(90deg,
+            rgba(255, 23, 68, 0.10),
+            rgba(255, 109, 0, 0.10),
+            rgba(255, 214, 0, 0.10),
+            rgba(0, 230, 118, 0.10),
+            rgba(0, 229, 255, 0.10),
+            rgba(41, 121, 255, 0.10),
+            rgba(213, 0, 249, 0.10),
+            rgba(255, 0, 170, 0.10)),
+        rgba(0, 0, 0, 0.35);
+    color: #e6e6f0;
     border-bottom: 2px solid transparent;
-    border-image: linear-gradient(45deg, #97C5E9, #ED8EA6) 1;
+    border-image: linear-gradient(90deg,
+        #ff1744, #ff6d00, #ffd600, #00e676, #00e5ff, #2979ff, #d500f9, #ff00aa) 1;
 }
 
-#workspaces button {
-    padding: 0 8px;
-    background: transparent;
-    color: #b3a6ff;
-}
-
-#workspaces button.active {
-    background: rgba(179, 166, 255, 0.25);
-    color: #f5e6ea;
-    border-radius: 6px;
-}
-
+/* distro pill: cycles through the spectrum */
 #custom-distro {
-    padding: 0 10px;
-    margin-right: 10px;
-    color: #FACFDE;
-    font-size: 16px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #000000;
+    margin: 4px 2px;
+    background-color: #ff1744;
+    animation: rgb-cycle 8s linear infinite;
 }
 
 #clock,
-#pulseaudio,
-#network,
-#battery,
-#tray {
-    padding: 0 10px;
-    color: #f5e6ea;
-}
-
-#battery {
-    color: #f5b8c4;
-}
-
-#network {
-    color: #b3a6ff;
-}
-
-#clock {
-    font-family: "Iosevka Nerd Font";
-    font-size: 15px;
-    font-weight: bold;
-    background-color: rgba(90, 100, 120, 0.55);
-    border-radius: 8px;
-    padding: 2px 14px;
-    margin: 4px 6px;
-}
-
+#custom-uptime,
+#custom-netspeed,
 #memory,
 #temperature,
 #disk,
 #pulseaudio,
 #bluetooth,
 #network,
-#cpu
-{
-    background-color: rgba(90, 100, 120, 0.55);
+#cpu,
+#battery {
+    background-color: rgba(10, 10, 18, 0.80);
     border-radius: 8px;
     padding: 2px 14px;
     margin: 4px 2px;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
 }
 
-#custom-distro {
-    background-color: rgba(90, 100, 120, 0.55);
-    color: #D98CB3;
-    border-radius: 8px;
-    padding: 2px 14px;
-    margin: 4px 2px;
+@keyframes rgb-text {
+    /* text = light/pastel shade, underline = full neon */
+    0%   { color: #ffd6de; border-bottom-color: #ff1744; }
+    14%  { color: #ffe3cc; border-bottom-color: #ff6d00; }
+    28%  { color: #fff8c7; border-bottom-color: #ffd600; }
+    42%  { color: #ccffe3; border-bottom-color: #00e676; }
+    57%  { color: #ccfbff; border-bottom-color: #00e5ff; }
+    71%  { color: #d6e4ff; border-bottom-color: #2979ff; }
+    85%  { color: #f5d6ff; border-bottom-color: #d500f9; }
+    100% { color: #ffd6de; border-bottom-color: #ff1744; }
+}
+
+/* clock: rainbow-tinted background, text + underline cycle RGB */
+#clock {
+    font-size: 10px;
+    margin: 4px 6px;
+    background: linear-gradient(90deg,
+        rgba(255, 23, 68, 0.18),
+        rgba(255, 214, 0, 0.18),
+        rgba(0, 230, 118, 0.18),
+        rgba(0, 229, 255, 0.18),
+        rgba(41, 121, 255, 0.18),
+        rgba(213, 0, 249, 0.18)),
+        rgba(10, 10, 18, 0.85);
+    border-bottom: 2px solid #ff1744;
+    animation: rgb-text 6s linear infinite;
+}
+
+/* one hue per module: text + underline in the hue,
+   background = the same hue darkened to ~15%, semi-opaque */
+#custom-uptime   { color: #ff1744; border-bottom-color: #ff1744; background-color: rgba(38, 3, 10, 0.85); }
+#temperature     { color: #ff6d00; border-bottom-color: #ff6d00; background-color: rgba(38, 16, 0, 0.85); }
+#cpu             { color: #ffd600; border-bottom-color: #ffd600; background-color: rgba(38, 32, 0, 0.85); }
+#memory          { color: #00e676; border-bottom-color: #00e676; background-color: rgba(0, 35, 18, 0.85); }
+#disk            { color: #1de9b6; border-bottom-color: #1de9b6; background-color: rgba(4, 35, 27, 0.85); }
+#pulseaudio      { color: #00e5ff; border-bottom-color: #00e5ff; background-color: rgba(0, 34, 38, 0.85); }
+#custom-netspeed { color: #2979ff; border-bottom-color: #2979ff; background-color: rgba(6, 18, 38, 0.85); }
+#network         { color: #7c4dff; border-bottom-color: #7c4dff; background-color: rgba(19, 12, 38, 0.85); }
+#bluetooth       { color: #d500f9; border-bottom-color: #d500f9; background-color: rgba(32, 0, 37, 0.85); }
+#battery         { color: #ff00aa; border-bottom-color: #ff00aa; background-color: rgba(38, 0, 26, 0.85); padding: 2px 10px; }
+#tray            { padding: 0 10px; color: #e6e6f0; }
+
+#temperature.critical,
+#battery.critical:not(.charging) {
+    color: #000000;
+    background-color: #ff1744;
 }
 
 #bluetooth.disabled {
-    color: rgba(255, 255, 255, 0.35);
-    background-color: rgba(90, 100, 120, 0.25);
+    color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(10, 10, 18, 0.4);
+    border-bottom-color: transparent;
 }
 
 #bluetooth.off,
 #network.disconnected {
-    color: #f38ba8;
-    background-color: rgba(180, 40, 60, 0.25);
+    color: #4a3a5a;
+    background-color: rgba(10, 10, 18, 0.4);
+    border-bottom-color: transparent;
 }
 
-#temperature {
-    font-weight: bold;
-    color: #e8965a;
-}
-
-#cpu {
-    font-weight: bold;
-    color: #7a9cc6;
-}
-
-#memory {
-    font-weight: bold;
-    color: #d98cb3;
-}
-
-#disk {
-    font-weight: bold;
-    color: #8fbf8f;
-}
-
-#pulseaudio {
-    font-weight: bold;
-    color: #c4a7e7;
-}
-
+/* workspaces: each dot its own hue, active one cycles RGB */
 #workspaces button {
-    background-color: transparent;
-    color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.12);
+    color: transparent;
     border-radius: 50%;
     min-width: 12px;
     min-height: 8px;
@@ -127,16 +142,27 @@ window#waybar {
     transition: all 0.2s ease;
 }
 
-#workspaces button.active {
-    background-color: rgba(255, 255, 255, 1);
-    min-width: 12px;
-    min-height: 8px;
-}
+#workspaces button:nth-child(7n+1) { background-color: rgba(255, 23, 68, 0.35); }
+#workspaces button:nth-child(7n+2) { background-color: rgba(255, 109, 0, 0.35); }
+#workspaces button:nth-child(7n+3) { background-color: rgba(255, 214, 0, 0.35); }
+#workspaces button:nth-child(7n+4) { background-color: rgba(0, 230, 118, 0.35); }
+#workspaces button:nth-child(7n+5) { background-color: rgba(0, 229, 255, 0.35); }
+#workspaces button:nth-child(7n+6) { background-color: rgba(41, 121, 255, 0.35); }
+#workspaces button:nth-child(7n+7) { background-color: rgba(213, 0, 249, 0.35); }
 
 #workspaces button.empty {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+#workspaces button.active {
+    min-width: 18px;
+    min-height: 8px;
+    border-radius: 6px;
+    background-color: #ff1744;
+    animation: rgb-cycle 4s linear infinite;
 }
 
 #workspaces button:hover {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: #ff00aa;
+    box-shadow: 0 0 6px #ff00aa;
 }

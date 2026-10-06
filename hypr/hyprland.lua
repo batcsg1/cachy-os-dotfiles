@@ -33,6 +33,13 @@ hl.monitor({
 	scale = 1,
 })
 
+hl.monitor({
+	output = "DP-1",
+	mode = "1920x1080@60",
+	position = "3840x0",
+	scale = 1,
+})
+
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -40,9 +47,10 @@ hl.monitor({
 -- Set programs that you use
 local terminal = "kitty"
 local fileManager = "yazi"
-local menu = "rofi -show drun"
+local menu = "wofi --show drun"
 local browser = "brave-origin-nightly"
 local lock = "hyprlock"
+local managementMenu = "~/.config/wofi/powermenu.fish"
 -------------------
 ---- AUTOSTART ----
 -------------------
@@ -56,8 +64,9 @@ hl.on("hyprland.start", function()
 	--   hl.exec_cmd(terminal)
 	--   hl.exec_cmd("nm-applet")
 	hl.exec_cmd("waybar")
-	hl.exec_cmd("hyprpaper")
+	hl.exec_cmd("sleep 1 && hyprpaper")
 	hl.exec_cmd("sleep 2 && hyprflow restore")
+	hl.exec_cmd("openrgb -p rog")
 	--   hl.exec_cmd("waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css &")
 end)
 
@@ -101,12 +110,23 @@ hl.config({
 		border_size = 2,
 
 		--col = {
-		--  active_border   = "rgba(4caf50ee)",
+		--lock  active_border   = "rgba(4caf50ee)",
 		--inactive_border = "rgba(086823ee)",
 		--},
 		col = {
-			active_border = { colors = { "rgba(97C5E9ee)", "rgba(ED8EA6ee)" }, angle = 45 },
-			inactive_border = "rgba(3b4252aa)",
+			active_border = {
+				colors = {
+					"rgb(ff1744)",
+					"rgb(ff6d00)",
+					"rgb(ffd600)",
+					"rgb(00e676)",
+					"rgb(00e5ff)",
+					"rgb(2979ff)",
+					"rgb(d500f9)",
+				},
+				angle = 45,
+			},
+			inactive_border = { colors = { "rgba(1a1024aa)" } },
 		},
 		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
 		resize_on_border = false,
@@ -127,11 +147,11 @@ hl.config({
 
 		shadow = {
 			enabled = true,
-			range = 4,
+			range = 6,
 			render_power = 3,
-			color = 0xee1a1a1a,
+			color = 0xee000000,
+			color_inactive = 0x99000000,
 		},
-
 		blur = {
 			enabled = true,
 			size = 3,
@@ -144,6 +164,10 @@ hl.config({
 		enabled = true,
 	},
 })
+
+-- spinning RGB
+hl.curve("linear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } })
+hl.animation({ leaf = "borderangle", enabled = true, speed = 50, bezier = "linear", style = "loop" })
 
 -- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
 hl.curve("easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
@@ -281,19 +305,23 @@ hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lock))
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("hyprflow save"))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("kitty -e " .. fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+
+-- Menu keybinds
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. "+ SHIFT + M", hl.dsp.exec_cmd(managementMenu))
+
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
 -- Screenshot Keybinds
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m window"))
+--hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m output"))
 --hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
---hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind(mainMod .. " + ALT + S", hl.dsp.exec_cmd("hyprshot -m region"))
 
 -- Power Keybinds
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("systemctl reboot"))
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("systemctl shutdown"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("reboot"))
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("shutdown now"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
@@ -352,6 +380,19 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+
+-- close ALL windows on every workspace
+hl.bind(
+	mainMod .. " + SHIFT + Q",
+	hl.dsp.exec_cmd([[hyprctl clients -j | jq -r '.[].address' | xargs -I{} hyprctl dispatch closewindow address:{}]])
+)
+
+-------------
+--- POWER ---
+-------------
+local power = os.getenv("HOME") .. "/.config/hypr/scripts/power.sh"
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd(power .. " reboot"))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd(power .. " poweroff"))
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----

@@ -1,36 +1,74 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# ROG RGB — red → orange → yellow → green → cyan → blue → purple
+# Palette matches kitty.conf (ROG RGB)
+
+add_newline = true
+
 format = """
-$os\
-$directory\
-$line_break\
-$character\
-"""
+[┌](bold fg:#ff1744)$os$shell$username$hostname$time
+[└](bold fg:#2979ff)$directory$git_branch$git_status
+$character"""
 
-#[username]
-#show_always = true
-#style_user = "bold #EE90A8"
-#format = "[$user]($style)"
-
-#[hostname]
-#ssh_only = false
-#format = "[@$hostname]($style) "
-#style = "bold #97C5E9"
-
-[directory]
-style = "bold #f5b8c4"
-format = "[$path]($style) "
+# ── line 1: os / shell / user / host / time ──────────────────────
 
 [os]
 disabled = false
-format = "[$symbol]($style)"
-style = "bold #EE90A8"
+format = '[ $symbol \($type\) ](bold bg:#ff1744 fg:#000000)'
 
 [os.symbols]
-Debian = "󰣚  "
+Debian = "󰣚"
+Ubuntu = ""
+Arch = ""
+Fedora = ""
+Windows = ""
+Macos = ""
+Linux = ""
 
-#[cmd_duration]
-#format = "took [$duration]($style) "
-#style = "bold #f5b8c4"
+[shell]
+disabled = false
+bash_indicator = 'bash'
+zsh_indicator = 'zsh'
+fish_indicator = 'fish'
+powershell_indicator = 'pwsh'
+unknown_indicator = 'sh'
+format = '[](bg:#ff6d00 fg:#ff1744)[  $indicator ](bold bg:#ff6d00 fg:#000000)'
+
+[username]
+show_always = true
+style_user = 'bold bg:#ffd600 fg:#000000'
+style_root = 'bold bg:#ffd600 fg:#d50000'
+format = '[](bg:#ffd600 fg:#ff6d00)[  $user/]($style)'
+
+[hostname]
+ssh_only = false
+format = '[$hostname ](bold bg:#ffd600 fg:#000000)'
+
+[time]
+disabled = false
+time_format = '%H:%M'
+format = '[](bg:#00e676 fg:#ffd600)[  $time ](bold bg:#00e676 fg:#000000)[](fg:#00e676)'
+
+# ── line 2: directory + git ──────────────────────────────────────
+
+[directory]
+format = '[\[ ](fg:#2979ff)[$path](bold fg:#00e5ff)[$read_only](fg:#ff1744)[ \]](fg:#2979ff)'
+read_only = ' 󰌾'
+truncation_length = 3
+truncate_to_repo = false
+truncation_symbol = '…/'
+home_symbol = '~'
+
+[git_branch]
+symbol = ' '
+format = ' [$symbol$branch](bold fg:#d500f9)'
+
+[git_status]
+format = '[ $all_status$ahead_behind](fg:#ff00aa)'
+
+# ── line 3: prompt char ──────────────────────────────────────────
 
 [character]
-success_symbol = "[❯ ](bold #f5b8c4)"
-error_symbol = "[❯ ](bold #f5b8c4)"
+success_symbol = '[❯](bold fg:#ff1744)[❯](bold fg:#00e676)[❯](bold fg:#2979ff)'
+error_symbol = '[❯❯❯](bold fg:#ff1744)'
+vimcmd_symbol = '[❮](bold fg:#d500f9)'

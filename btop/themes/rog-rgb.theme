@@ -1,0 +1,61 @@
+# ROG RGB — matches kitty / starship / nvim / waybar / hyprland
+theme[main_bg]="#000000"
+theme[main_fg]="#e6e6f0"
+
+theme[title]="#ff00aa"
+theme[hi_fg]="#00e5ff"
+theme[selected_bg]="#3a1060"
+theme[selected_fg]="#ffffff"
+
+theme[inactive_fg]="#3a3450"
+theme[graph_text]="#ccfbff"
+theme[meter_bg]="#120a1c"
+theme[proc_misc]="#00e676"
+
+# one box per hue
+theme[cpu_box]="#ff1744"
+theme[mem_box]="#00e676"
+theme[net_box]="#2979ff"
+theme[proc_box]="#d500f9"
+theme[div_line]="#2a2440"
+
+# temps: cool cyan -> yellow -> hot red
+theme[temp_start]="#00e5ff"
+theme[temp_mid]="#ffd600"
+theme[temp_end]="#ff1744"
+
+# cpu load: green -> yellow -> red
+theme[cpu_start]="#00e676"
+theme[cpu_mid]="#ffd600"
+theme[cpu_end]="#ff1744"
+
+# memory meters: each a different slice of the spectrum
+theme[free_start]="#004524"
+theme[free_mid]="#00b35c"
+theme[free_end]="#00e676"
+
+theme[cached_start]="#0c244d"
+theme[cached_mid]="#2979ff"
+theme[cached_end]="#00e5ff"
+
+theme[available_start]="#4d4000"
+theme[available_mid]="#ff6d00"
+theme[available_end]="#ffd600"
+
+theme[used_start]="#40004b"
+theme[used_mid]="#d500f9"
+theme[used_end]="#ff00aa"
+
+# network
+theme[download_start]="#00454d"
+theme[download_mid]="#00e5ff"
+theme[download_end]="#2979ff"
+
+theme[upload_start]="#4d0715"
+theme[upload_mid]="#ff00aa"
+theme[upload_end]="#d500f9"
+
+# process list cpu bars: full rainbow
+theme[process_start]="#00e5ff"
+theme[process_mid]="#d500f9"
+theme[process_end]="#ff1744"

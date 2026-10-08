@@ -60,7 +60,7 @@
 
     "pulseaudio": {
         "format": "󰕾  {volume}%",
-        "format-muted": "󰝟",
+        "format-muted": "󰝟 ",
         "on-click": "pavucontrol"
     },
 

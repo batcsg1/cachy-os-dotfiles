@@ -49,7 +49,7 @@
     },
 
     "memory": {
-        "format": "󰍛  {percentage}%",
+        "format": "  {percentage}%",
         "tooltip": true
     },
 

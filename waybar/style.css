@@ -21,6 +21,10 @@
 @define-color nord14 #A3BE8C;
 @define-color nord15 #B48EAD;
 
+@define-color cachy-teal   #00d4aa;
+@define-color cachy-green  #1dc7a1;
+@define-color cachy-dark   #0f2a26;
+
 /* slow cycle through Frost + Aurora (calmer than the RGB version) */
 @keyframes nord-cycle {
     0%   { background-color: #88C0D0; box-shadow: 0 0 4px alpha(#88C0D0, 0.5); }
@@ -63,13 +67,19 @@ tooltip label { color: @nord4; }
 
 /* distro pill */
 #custom-distro {
-    padding: 2px 8px;
+    border-bottom: 2px solid @cachy-teal;
+    color: @cachy-teal;
     border-radius: 8px;
-    font-weight: bold;
-    color: @nord0;
+    padding: 2px 8px;
     margin: 4px 2px;
-    background-color: @nord8;
-    animation: nord-cycle 12s linear infinite;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: @cachy-dark;
+}
+
+#custom-distro:hover {
+    background-color: alpha(@cachy-teal, 0.15);
+    border-bottom-color: @cachy-green;
 }
 
 #clock,
@@ -159,44 +169,43 @@ tooltip label { color: @nord4; }
     color: @nord11;
 }
 
-/* workspaces: dots, each its own Nord hue, active cycles */
 #workspaces button {
-    background-color: alpha(@nord4, 0.12);
-    color: transparent;
-    border-radius: 50%;
-    min-width: 12px;
-    min-height: 8px;
-    padding: 0;
-    margin: 0 4px;
-    font-size: 0;
+    background-color: rgba(10, 10, 18, 0.80);
+    color: rgba(230, 230, 240, 0.5);
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 8px;
+    box-shadow: none;
+    padding: 2px 8px;
+    margin: 4px 2px;
+    min-width: 0;
+    font-size: 10px;
+    font-weight: bold;
     transition: all 0.2s ease;
 }
 
-#workspaces button:nth-child(7n+1) { background-color: alpha(@nord8,  0.40); }
-#workspaces button:nth-child(7n+2) { background-color: alpha(@nord9,  0.40); }
-#workspaces button:nth-child(7n+3) { background-color: alpha(@nord15, 0.40); }
-#workspaces button:nth-child(7n+4) { background-color: alpha(@nord12, 0.40); }
-#workspaces button:nth-child(7n+5) { background-color: alpha(@nord13, 0.40); }
-#workspaces button:nth-child(7n+6) { background-color: alpha(@nord14, 0.40); }
-#workspaces button:nth-child(7n+7) { background-color: alpha(@nord7,  0.40); }
+/* workspaces: dots, each its own Nord hue, active cycles */
+#workspaces button:nth-child(7n+1) { color: #ff1744; border-bottom-color: #ff1744; background-color: rgba(38, 3, 10, 0.85); }
+#workspaces button:nth-child(7n+2) { color: #ff6d00; border-bottom-color: #ff6d00; background-color: rgba(38, 16, 0, 0.85); }
+#workspaces button:nth-child(7n+3) { color: #ffd600; border-bottom-color: #ffd600; background-color: rgba(38, 32, 0, 0.85); }
+#workspaces button:nth-child(7n+4) { color: #00e676; border-bottom-color: #00e676; background-color: rgba(0, 35, 18, 0.85); }
+#workspaces button:nth-child(7n+5) { color: #00e5ff; border-bottom-color: #00e5ff; background-color: rgba(0, 34, 38, 0.85); }
+#workspaces button:nth-child(7n+6) { color: #2979ff; border-bottom-color: #2979ff; background-color: rgba(6, 18, 38, 0.85); }
+#workspaces button:nth-child(7n+7) { color: #d500f9; border-bottom-color: #d500f9; background-color: rgba(32, 0, 37, 0.85); }
 
 #workspaces button.empty {
-    background-color: alpha(@nord4, 0.10);
+    color: rgba(255, 255, 255, 0.3);
+    border-bottom-color: transparent;
 }
 
+/* active: same style as the clock (pastel text + cycling neon underline) */
 #workspaces button.active {
-    min-width: 18px;
-    min-height: 8px;
-    border-radius: 6px;
-    background-color: @nord8;
-    animation: nord-cycle 6s linear infinite;
-}
-
-#workspaces button.urgent {
-    background-color: @nord11;
+    background-color: rgba(10, 10, 18, 0.85);
+    animation: rgb-text 6s linear infinite;
 }
 
 #workspaces button:hover {
-    background-color: @nord6;
-    box-shadow: 0 0 4px alpha(@nord6, 0.6);
+    background-color: rgba(38, 0, 26, 0.85);
+    color: #ff00aa;
+    border-bottom-color: #ff00aa;
 }

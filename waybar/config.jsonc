@@ -4,7 +4,7 @@
     "height": 30,
     "spacing": 4,
     "fixed-center": true,
-    "modules-left": ["custom/distro", "hyprland/workspaces", "temperature", "cpu", "memory", "disk", "pulseaudio", "bluetooth],
+    "modules-left": ["custom/distro", "hyprland/workspaces", "temperature", "cpu", "memory", "disk", "pulseaudio", "bluetooth"],
     "modules-center": ["clock"],
     "modules-right": ["network", "custom/netspeed", "custom/uptime", "battery"],
     // Nord palette

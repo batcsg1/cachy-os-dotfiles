@@ -1,0 +1,33 @@
+font=DepartureMono Nerd Font Mono 10
+width=350
+height=150
+margin=10
+padding=12
+border-size=2
+border-radius=8
+icons=1
+max-icon-size=48
+default-timeout=5000
+layer=overlay
+anchor=top-right
+
+background-color=#2E3440
+text-color=#ECEFF4
+border-color=#88C0D0
+progress-color=over #5E81AC
+
+[urgency=low]
+border-color=#4C566A
+text-color=#D8DEE9
+
+[urgency=normal]
+border-color=#88C0D0
+
+[urgency=high]
+background-color=#3B4252
+border-color=#BF616A
+text-color=#ECEFF4
+default-timeout=0
+
+[mode=do-not-disturb]
+invisible=1

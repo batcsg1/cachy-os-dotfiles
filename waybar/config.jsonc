@@ -4,9 +4,9 @@
     "height": 30,
     "spacing": 4,
     "fixed-center": true,
-    "modules-left": ["custom/distro", "hyprland/workspaces", "temperature", "cpu", "memory", "disk"],
+    "modules-left": ["custom/distro", "hyprland/workspaces", "temperature", "cpu", "memory", "disk", "pulseaudio"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "bluetooth", "network", "custom/netspeed", "custom/uptime", "battery"],
+    "modules-right": ["bluetooth", "network", "custom/netspeed", "custom/uptime", "battery"],
     // Nord palette
     // Polar Night: #2E3440 #3B4252 #434C5E #4C566A
     // Snow Storm:  #D8DEE9 #E5E9F0 #ECEFF4
